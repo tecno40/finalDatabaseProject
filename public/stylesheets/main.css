@@ -1,0 +1,51 @@
+.rating {
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  height: 30px;
+}
+
+.rating > input {
+  opacity: 0;
+  margin-right: -100%;
+}
+
+.rating > label {
+  position: relative;
+  display: block;
+  float: right;
+  background: url('http://cliparts.co/cliparts/6cy/oke/6cyoke9xi.png');
+  background-size: 30px 30px;
+}
+
+.rating > label:before {
+  display: block;
+  opacity: 0;
+  content: '';
+  width: 30px;
+  height: 30px;
+  background: url('http://www.lawgcap.org/media/Ribbon%20Attachments/CAP-Gold-Star-Attachment-v1.png');
+  background-size: 30px 30px;
+  transition: opacity 0.2s linear;
+}
+
+.rating > label:hover:before,  .rating > label:hover ~ label:before,  .rating:not(:hover) > :checked ~ label:before { opacity: 1; }
+
+
+h1, h2, h3, h4, h5 {
+    color: black;
+    font-family:"Times New Roman", Times, serif;
+}
+.font{
+    font-weight: bold;
+    color: black;
+    font-family:"Times New Roman", Times, serif;
+}
+h5 .font{
+    font-weight: normal;
+}
+.itemHeader {
+    color: black;
+    text-decoration: underline;
+    font-family:"Times New Roman", Times, serif;
+}

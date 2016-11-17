@@ -1,0 +1,81 @@
+@*
+ * This template is called from the `index` template. This template
+ * handles the rendering of the page header and body tags. It takes
+ * two arguments, a `String` for the title of the page and an `Html`
+ * object to insert into the body of the page.
+ *@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        @* Here's where we render the page title `String`. *@
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
+    
+        @* here is w3 template info *@
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+        <link rel="stylesheet" href="http://www.w3schools.com/lib/w3-theme-light-blue.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+        @* And here's where we render the `Html` object containing
+         * the page content. *@
+        @content
+        @* w3 template *@
+      
+    <!-- Header -->
+        <header class="w3-container w3-theme w3-padding" id="myHeader">
+            <div class="w3-center">
+                <div class="w3-quarter w3-container" >
+                    <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
+                </div>
+                <div class="w3-half w3-container">
+                    <h1 class="w3-xxxlarge w3-animate-bottom font">Donut Friend donut456</h1> 
+                    <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">Follow Friend</button>
+                </div>
+                <div class="w3-quarter w3-container" >
+                    <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
+                </div>
+            </div>
+        </header>
+        <br/>
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <div class="w3-card white">
+                    <div class="w3-container w3-theme">
+                        <h3>donut456's Favorites</h3>
+                    </div>
+                    <ul class="w3-ul w3-border-top">
+                        <li>
+                            <h3>Frozen</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w3-half">
+                <div class="w3-card white">
+                    <div class="w3-container w3-theme">
+                        <h3>donut456's Reviews</h3>
+                    </div>
+                    <ul class="w3-ul">
+                        <li>
+                            <h3 class="itemHeader">Donut Shop</h3>
+                            <h4>Reviews</h4>
+                        </li>
+                        <li>
+                            <h3 class="itemHeader">Donut Hole</h3>
+                            <h4>The response to the animations was ridiculous</h4>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
