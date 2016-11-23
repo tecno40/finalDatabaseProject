@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +25,6 @@
     <body style= "background-color:white">
         @* And here's where we render the `Html` object containin
          * the page content. *@
-        @content
         <header class="w3-container w3-theme w3-padding" id="myHeader">
             <div class="w3-center">
                 <h1 class="w3-xxxlarge w3-animate-bottom font">Donut Finder</h1>
@@ -37,6 +36,7 @@
                 <div class="w3-group">
                     <label class="w3-label w3-validate">Username</label>
                     <input required="" type="text">
+                    <a href="main">search</a>
                 </div>
                 <div class="w3-group">
                     <label class="w3-label w3-validate">Password</label>

@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String)(location: String)(socialMedia: String)(averageRatings: String)(features: String)(reviews: String)(image: String)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,28 +25,31 @@
     <body>
         @* And here's where we render the `Html` object containing
          * the page content. *@
-        @content
         @* w3 template *@
       
     <!-- Header -->
         <header class="w3-container w3-theme w3-padding" id="myHeader">
             <div class="w3-center">
                 <div class="w3-quarter w3-container" >
-                    <img src="http://www.consumingla.com/wp-content/uploads/2014/04/IMG_0474.jpg" alt="image" style="max-width:100%" >
+                    <img src=@image alt="image" style="max-width:100%" >
                 </div>
                 <div class="w3-half w3-container">
                     <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Home</button>
                     <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Favorite</button>
-                    <h1 class="w3-xxlarge w3-animate-bottom font">Donut Shop</h1> 
+                    <h1 class="w3-xxlarge w3-animate-bottom font">@title</h1> 
                     <div class="w3-half w3-container">
-                        <h5 class="font"> Location</h5>
+                        <pre class="font">
+                            <h5 class="font">@location</h5>
+                        </pre>
                     </div>
                     <div class="w3-half w3-container">
-                        <h5 class="font"> social media</h5>
+                        <pre class="font">
+                            <h5 class="font">@socialMedia</h5>
+                        </pre>
                     </div>
                 </div>
                 <div class="w3-quarter w3-container" >
-                    <img src="http://www.consumingla.com/wp-content/uploads/2014/04/IMG_0474.jpg" alt="image" style="max-width:100%" >
+                    <img src=@image alt="image" style="max-width:100%" >
                 </div>
             </div>
         </header>
@@ -56,43 +59,30 @@
             <div class="w3-half">
                 <div class="w3-card white">
                     <div class="w3-container w3-theme">
-                        <h3>What's with the Donut Shop?</h3>
+                        <h3>What's with @title ?</h3>
                     </div>
-                    <ul class="w3-ul w3-border-top">
-                        <li>
-                            <h3>Info on donut shop</h3>
-                        </li>
-                    </ul>
+                        <h3><u>Average Ratings of @title</u></h3>
+                        <pre>
+                            <h3>@averageRatings</h3>
+                        </pre>
                     <div class="w3-container w3-theme">
-                        <h3>What's Goin' On At The Donut Shop?</h3>
+                        <h3>What's Goin' On At @title ?</h3>
                     </div>
-                    <ul class="w3-ul w3-border-top">
-                        <li>
-                            <h3>Features</h3>
-                        </li>
-                    </ul>
+                    <pre>
+                        <h3>@features</h3>
+                    </pre>
                     <div class="w3-container w3-theme">
-                        <h3>What's with the Donut Shop Ratings?</h3>
+                        <h3>@title Buzz</h3>
                     </div>
-                    <ul class="w3-ul w3-border-top">
-                        <li>
-                            <h3>ratings</h3>
-                        </li>
-                    </ul>
-                    <div class="w3-container w3-theme">
-                        <h3>The Donut Shop Buzz</h3>
-                    </div>
-                    <ul class="w3-ul w3-border-top">
-                        <li>
-                            <h3>Reviews</h3>
-                        </li>
-                    </ul>
+                    <pre>
+                        <h3>@reviews</h3>
+                    </pre>
                 </div>
             </div>
             <div class="w3-half">
                 <div class="w3-card white">
                     <div class="w3-container w3-theme">
-                        <h3>Review the Donut Shop</h3>
+                        <h3>Review @title</h3>
                     </div>
                     <form>
                     <label>Bathrooms</label>

@@ -4,7 +4,8 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+
+@(title: String)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +26,7 @@
     <body>
         @* And here's where we render the `Html` object containing
          * the page content. *@
-        @content
+      
         @* w3 template *@
       
     <!-- Header -->
@@ -35,16 +36,25 @@
                     <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
                 </div>
                 <div class="w3-half w3-container">
-                    <h1 class="w3-xxxlarge w3-animate-bottom font">Donut Friend donut456</h1> 
-                    <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:900;">Follow Friend</button>
+                    <a href="Home.scala.html">whatever</a>
+                    <button class="w3-btn font" onclick="hello();" >Home</button>
+                    <button class="w3-btn font" onclick="document.getElementById('id01').style.display='block'">Follow Friend</button>
+                    <h1 class="w3-xxxlarge w3-animate-bottom font">You're Donut Friend donut456</h1> 
                 </div>
                 <div class="w3-quarter w3-container" >
                     <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
                 </div>
             </div>
         </header>
-        <br/>
-        <div class="w3-row-padding">
+        <div class="w3-row-padding w3-margin-top">
+            <div class="w3-half w3-container w3-center">
+                <form>
+                    <input type="text" required>
+                    <button class="w3-btn font w3-light-blue" onclick="document.getElementById('id01').style.display='block'">Find Shop</button>
+                </form>
+            </div>
+        </div>
+        <div class="w3-row-padding w3-margin-top">
             <div class="w3-half">
                 <div class="w3-card white">
                     <div class="w3-container w3-theme">
