@@ -21,7 +21,9 @@ public class HomeController extends Controller {
         return ok(index.render("Index"));
     }
     public Result friends(){
-        return ok(friends.render("Friends"));
+        ap = new Application(); 
+        FriendsPage fp = ap.getFriendsPage("8"); 
+        return ok(friends.render(fp.getName(),fp.getFavs(), fp.getReviews()));
     }
     public Result main(){
         ap = new Application(); 

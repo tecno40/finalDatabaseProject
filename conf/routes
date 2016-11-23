@@ -14,6 +14,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /friends                    controllers.HomeController.friends
 
-GET     /testing                    controllers.Application.testing
-
 GET     /main                       controllers.HomeController.main

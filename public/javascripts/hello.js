@@ -6,3 +6,7 @@ if (window.console) {
 function hello(){
     alert('this is an allert');
 }
+
+function submitNewRatings(){
+    alert('you submitted');
+}

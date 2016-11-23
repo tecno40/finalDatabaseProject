@@ -35,7 +35,7 @@
                 </div>
                 <div class="w3-half w3-container">
                     <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Home</button>
-                    <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Favorite</button>
+                    <!--<button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Favorite</button>-->
                     <h1 class="w3-xxlarge w3-animate-bottom font">@title</h1> 
                     <div class="w3-half w3-container">
                         <pre class="font">
@@ -85,35 +85,175 @@
                         <h3>Review @title</h3>
                     </div>
                     <form>
-                    <label>Bathrooms</label>
-                    
-<span class="rating starpadding">
-  <input id="rating5" type="radio" name="rating" value="5">
-  <label for="rating5">5</label>
-  <input id="rating4" type="radio" name="rating" value="4">
-  <label for="rating4">4</label>
-  <input id="rating3" type="radio" name="rating" value="3">
-  <label for="rating3">3</label>
-  <input id="rating2" type="radio" name="rating" value="2">
-  <label for="rating2">2</label>
-  <input id="rating1" type="radio" name="rating" value="1">
-  <label for="rating1">1</label>
-</span>
-    
-</form><form>
-                    <label>clean</label>
-<span class="rating">
-  <input id="rating51" type="radio" name="rating" value="5">
-  <label for="rating51">5</label>
-  <input id="rating41" type="radio" name="rating" value="4">
-  <label for="rating41">4</label>
-  <input id="rating31" type="radio" name="rating" value="3">
-  <label for="rating31">3</label>
-  <input id="rating21" type="radio" name="rating" value="2">
-  <label for="rating21">2</label>
-  <input id="rating11" type="radio" name="rating" value="1">
-  <label for="rating11">1</label>
-</span>
+                        <label>cleanliness</label>
+                        <fieldset id="clean">
+                            <span class="rating">
+                              <input id="rating5" type="radio" name="rating" value="5" name="clean">
+                              <label for="rating5">5</label>
+                              <input id="rating4" type="radio" name="rating" value="4" name="clean">
+                              <label for="rating4">4</label>
+                              <input id="rating3" type="radio" name="rating" value="3"name="clean">
+                              <label for="rating3">3</label>
+                              <input id="rating2" type="radio" name="rating" value="2"name="clean">
+                              <label for="rating2">2</label>
+                              <input id="rating1" type="radio" name="rating" value="1"name="clean">
+                              <label for="rating1">1</label>
+                            </span>
+                        </fieldset>
+                        <label>topping variety</label>
+                        <fieldset id="toppingvariety">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="toppingvariety">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="toppingvariety">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="toppingvariety">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="toppingvariety">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="toppingvariety">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>filling variety</label>
+                        <fieldset id="fillingvariety">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="fillingvariety">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="fillingvariety">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="fillingvariety">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="fillingvariety">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="fillingvariety">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>base variety</label>
+                        <fieldset id="basevariety">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="basevariety">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="basevariety">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="basevariety">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="basevariety">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="basevariety">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>filling quantity</label>
+                        <fieldset id="fillingquantity">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="fillingquantity">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="fillingquantity">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="fillingquantity">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="fillingquantity">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="fillingquantity">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>filling quality</label>
+                        <fieldset id="fillingquality">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="fillingquality">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="fillingquality">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="fillingquality">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="fillingquality">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="fillingquality">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>freshness</label>
+                        <fieldset id="freshness">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="freshness">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="freshness">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="freshness">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="freshness">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="freshness">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>bathrooms</label>
+                        <fieldset id="bathrooms">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="bathrooms">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="bathrooms">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="bathrooms">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="bathrooms">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="bathrooms">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>coffee</label>
+                        <fieldset id="coffee">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="coffee">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="coffee">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="coffee">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="coffee">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="coffee">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>parking</label>
+                        <fieldset id="parking">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="parking">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="parking">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="parking">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="parking">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="parking">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>average wait time</label>
+                        <fieldset id="averagewait">
+                            <span class="rating">
+                              <input id="rating51" type="radio" name="rating" value="5" name="averagewait">
+                              <label for="rating51">5</label>
+                              <input id="rating41" type="radio" name="rating" value="4" name="averagewait">
+                              <label for="rating41">4</label>
+                              <input id="rating31" type="radio" name="rating" value="3" name="averagewait">
+                              <label for="rating31">3</label>
+                              <input id="rating21" type="radio" name="rating" value="2" name="averagewait">
+                              <label for="rating21">2</label>
+                              <input id="rating11" type="radio" name="rating" value="1" name="averagewait">
+                              <label for="rating11">1</label>
+                            </span>
+                        </fieldset>
+                        <label>Tell us what you think about @title</label>
+                        <textarea rows="4" cols="50">Place txt here.</textarea>
+                        <br/>
+                         <input type="submit" value="Submit" onclick="submitNewRatings()">
                     </form>
                     
                 </div>
