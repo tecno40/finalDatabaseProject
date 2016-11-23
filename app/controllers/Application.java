@@ -10,6 +10,8 @@ import views.html.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.*;
+
 
 
 public class Application extends Controller {
@@ -23,6 +25,100 @@ public class Application extends Controller {
     }
     public Application(){
         
+    }
+    
+    public void updateReviews( Set<Map.Entry<String,String[]>> entries){
+        try {
+    
+    			Class.forName("org.postgresql.Driver");
+    			System.out.println("yay!!!"); 
+    
+    		} catch (ClassNotFoundException e) {
+    
+    			System.out.println("Where is your PostgreSQL JDBC Driver? "
+    					+ "Include in your library path!");
+    			e.printStackTrace();
+    		}
+    		Connection connection = null;
+
+		try {
+
+			connection = DriverManager.getConnection(
+					"jdbc:postgresql://localhost/donutfinder", "postgres",
+					"p0stGre$$Pa$$1");
+					System.out.println("YAY!! Again"); 
+
+		} catch (SQLException e) {
+
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+
+		}
+		if (connection != null) {
+			System.out.println("You made it, take control your database now!");
+		} else {
+			System.out.println("Failed to make connection!");
+		}
+        String tuples[][] = new String[20][2];
+        int i = 0; 
+        for (Map.Entry<String,String[]> entry : entries) {
+            tuples[i][0] = entry.getKey(); 
+            tuples[i][1] = Arrays.toString(entry.getValue()); 
+            i++;    
+        }
+        
+        ResultSet rs = null; 
+        try{
+            Statement stmt = connection.createStatement();
+            //get shop name 
+            String userId =""; 
+            String shopId =""; 
+            for(int k = 0; k<tuples.length;k++){
+                if (tuples[k][0] == null){
+                    break;
+                } else if (tuples[k][0].equalsIgnoreCase("Shop")){
+                    shopId = this.removeFirstAndLastChar(tuples[k][1]); 
+                }else if (tuples[k][0].equalsIgnoreCase("uname")){
+                    userId = this.removeFirstAndLastChar(tuples[k][1]);
+                }
+            }
+ System.out.println("user= " + userId); 
+  System.out.println("shop= "+shopId); 
+            for(int j = 0; j < tuples.length; j++){
+                if (tuples[j][0] == null){
+                    break; 
+                }else if(tuples[j][0].equalsIgnoreCase("Shop")||tuples[j][0].equalsIgnoreCase("uname")){
+                    
+                }else{
+                    rs = stmt.executeQuery("select * from rating where userid = '" + userId + "' and shopid='"
+                        +shopId+"' and ratingtype = '" + tuples[j][0] + "'" ); 
+                    String rating = this.removeFirstAndLastChar(tuples[j][1]); 
+                    if (rs.next()){
+                        int q = stmt.executeUpdate("UPDATE rating SET ratingval = '" +rating+
+                        "' WHERE shopid=" + shopId+ " and userid='" + userId+"' and ratingtype='"+tuples[j][0] +"'" ); 
+                    }else {
+                        int q = stmt.executeUpdate("insert into rating(userid, shopid,ratingtype,ratingval) values('"+
+                        userId+"', " +shopId+",'"+tuples[j][0]+"', "+rating+")");
+                    }
+                }
+                
+            }
+           /* String s = this.removeFirstAndLastChar(tuples[1][1]);//.substring(1,tuples[1][1].length() - 1); 
+            System.out.println("tuple 11 : " + s);
+            rs = stmt.executeQuery("select * from rating where userid = '" + s + "'" ); 
+            while (rs.next()){
+                System.out.print("Row num: " + rs.getRow()); 
+                System.out.println("select *  -  " + rs.getString("userid") +" " + rs.getString("shopid") + " " +
+                rs.getString("ratingtype") + " " + rs.getString("ratingval"));
+            }*/
+        }catch(Exception e){
+            System.out.println("jjjjjj"+e); 
+        }
+        
+    }
+    public String removeFirstAndLastChar(String string){
+         String s = string.substring(1,string.length() - 1); 
+        return s; 
     }
     
     public MainPage getMainPageInfo(int shopId){

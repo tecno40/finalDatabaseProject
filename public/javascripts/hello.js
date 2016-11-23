@@ -7,6 +7,11 @@ function hello(){
     alert('this is an allert');
 }
 
-function submitNewRatings(){
-    alert('you submitted');
+function validateForm() {
+    
+    return true;
+    
+}
+function hello2(){
+    return "hi"; 
 }

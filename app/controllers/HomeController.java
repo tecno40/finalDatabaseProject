@@ -4,6 +4,7 @@ import play.mvc.*;
 import views.html.*;
 import play.db.*;
 import java.sql.*;
+import java.util.*;
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -28,7 +29,22 @@ public class HomeController extends Controller {
     public Result main(){
         ap = new Application(); 
         MainPage i = ap.getMainPageInfo(111); 
-        return ok(main.render(i.getName(), i.getLoc(), i.getSM(), i.getRatings(), i.getFeatures(), i.getReviews(),i.getImage())); 
+        return ok(main.render(i.getName(), i.getLoc(), i.getSM(), i.getRatings(), i.getFeatures(), i.getReviews(),i.getImage(), "111", "8")); 
+    }
+    
+    /*public Result submitreviews(){
+        ap = new Application(); 
+        ap.submitreviews(); 
+        System.out.println("submitreviews------------------------------------"); 
+        return ok(index.render("Index")); 
+    }*/
+    public  Result submitreviews() {
+        Set<Map.Entry<String,String[]>> entries = request().queryString().entrySet();
+       
+        ap = new Application(); 
+        ap.updateReviews(entries); 
+        
+        return ok(index.render("Your new application is ready."));
     }
 }
 

@@ -1,3 +1,16 @@
+.button {
+  font: bold 15px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  margin: 5px; 
+  padding: 6px 10px 6px 10px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
 .rating {
   overflow: hidden;
   vertical-align: bottom;
