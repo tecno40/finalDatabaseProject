@@ -32,18 +32,15 @@ public class HomeController extends Controller {
         return ok(main.render(i.getName(), i.getLoc(), i.getSM(), i.getRatings(), i.getFeatures(), i.getReviews(),i.getImage(), "111", "8")); 
     }
     
-    /*public Result submitreviews(){
-        ap = new Application(); 
-        ap.submitreviews(); 
-        System.out.println("submitreviews------------------------------------"); 
-        return ok(index.render("Index")); 
-    }*/
     public  Result submitreviews() {
         Set<Map.Entry<String,String[]>> entries = request().queryString().entrySet();
-       
+
+       //  String name[] = request().queryString().get("text1");
+       // System.out.println("this is to test name: " +Arrays.toString(name) ); 
+
         ap = new Application(); 
         ap.updateReviews(entries); 
-        
+    
         return ok(index.render("Your new application is ready."));
     }
 }

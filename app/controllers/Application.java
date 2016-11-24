@@ -29,30 +29,23 @@ public class Application extends Controller {
     
     public void updateReviews( Set<Map.Entry<String,String[]>> entries){
         try {
-    
-    			Class.forName("org.postgresql.Driver");
-    			System.out.println("yay!!!"); 
-    
-    		} catch (ClassNotFoundException e) {
-    
-    			System.out.println("Where is your PostgreSQL JDBC Driver? "
-    					+ "Include in your library path!");
-    			e.printStackTrace();
-    		}
-    		Connection connection = null;
-
+        	Class.forName("org.postgresql.Driver");
+    		System.out.println("yay!!!"); 
+    	} catch (ClassNotFoundException e) {
+    		System.out.println("Where is your PostgreSQL JDBC Driver? "
+    				+ "Include in your library path!");
+			e.printStackTrace();
+		}
+		Connection connection = null;
 		try {
-
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://localhost/donutfinder", "postgres",
 					"p0stGre$$Pa$$1");
-					System.out.println("YAY!! Again"); 
+			System.out.println("YAY!! Again"); 
 
 		} catch (SQLException e) {
-
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
-
 		}
 		if (connection != null) {
 			System.out.println("You made it, take control your database now!");
@@ -83,12 +76,39 @@ public class Application extends Controller {
                 }
             }
  System.out.println("user= " + userId); 
-  System.out.println("shop= "+shopId); 
+  System.out.println("shop= " + shopId); 
             for(int j = 0; j < tuples.length; j++){
                 if (tuples[j][0] == null){
                     break; 
                 }else if(tuples[j][0].equalsIgnoreCase("Shop")||tuples[j][0].equalsIgnoreCase("uname")){
                     
+                }else if(tuples[j][0].equalsIgnoreCase("text1")){
+                    String review = this.removeFirstAndLastChar(tuples[j][1]);
+                    rs = stmt.executeQuery("select * from review where user_id = '" + userId + "' and shop_id=" + shopId);
+                    if(rs.next()){
+                         System.out.println("4"); 
+
+                        stmt.executeUpdate("update review set reviewtext = '" + review + "' where shop_id = " +
+                            shopId  + " and user_id = '" + userId +"'"); 
+                    }else {
+                         System.out.println("3"); 
+                        stmt.executeUpdate("insert into review(reviewtext, shop_id, user_id) where " +
+                            "values('" + review + ", " + shopId +", '" + userId +"')" );
+                    }
+                    System.out.println("text1:  " + tuples[j][1]); 
+                }else if (tuples[j][0].equalsIgnoreCase("overall")){
+                    String overallrating = this.removeFirstAndLastChar(tuples[j][1]);
+                    rs = stmt.executeQuery("select * from review where user_id = '" + userId + "' and shop_id=" + shopId);
+                    if(rs.next()){
+                        System.out.println("1"); 
+
+                        stmt.executeUpdate("update review set overallrating = '" + overallrating + "' where shop_id = " +
+                            shopId  + " and user_id = '" + userId +"'"); 
+                    }else {
+                        System.out.println("2"); 
+                        stmt.executeUpdate("insert into review(overallrating, shop_id, user_id) " +
+                            "values('" + overallrating + "', " + shopId +", '" + userId +"')" );
+                    }
                 }else{
                     rs = stmt.executeQuery("select * from rating where userid = '" + userId + "' and shopid='"
                         +shopId+"' and ratingtype = '" + tuples[j][0] + "'" ); 
@@ -123,11 +143,10 @@ public class Application extends Controller {
     
     public MainPage getMainPageInfo(int shopId){
          try {
+        	Class.forName("org.postgresql.Driver");
+    		System.out.println("yay!!!"); 
     
-    			Class.forName("org.postgresql.Driver");
-    			System.out.println("yay!!!"); 
-    
-    		} catch (ClassNotFoundException e) {
+    	} catch (ClassNotFoundException e) {
     
     			System.out.println("Where is your PostgreSQL JDBC Driver? "
     					+ "Include in your library path!");
