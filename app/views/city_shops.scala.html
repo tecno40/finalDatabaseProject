@@ -4,6 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
+ @(cityList: List[Cities])
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,11 @@
                         <h3>Cities with Secret Donut Societies</h3>
                     </div>
                     <pre>
-                        <h4 class="font"></h4>
+                        <h4 class="font">
+                        	@for(city <- cityList){
+				    			<br><a href="">@city.city</a>
+							}
+                        </h4>
                     </pre>
                 </div>
             </div>

@@ -6,6 +6,9 @@ import play.db.*;
 import models.*;
 import java.sql.*;
 import java.util.*;
+
+
+
 /**
  * This controller contains an action to handle HTTP requests
  * to the application's home page.
@@ -20,14 +23,14 @@ public class CitySearchController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result cityShops(){
-        ap = new Application(); 
         
-        Cities city=new Cities();
-        city.city="Atlanta";
-        city.state="GA";
+        List <Cities> cityList = Cities.find.all();
+        for (Cities city: cityList) {
+        	System.out.println(city.city);
+        }
+               
         
-        
-        return ok(city_shops.render()); 
+        return ok(city_shops.render(cityList)); 
     }
     
    }

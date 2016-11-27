@@ -12,7 +12,6 @@ libraryDependencies ++= Seq(
   javaWs,
   "org.avaje" % "ebean" % "2.7.3",
   "javax.persistence" % "persistence-api" % "1.0.2"
-
 )
 libraryDependencies += "org.postgresql" % "postgresql" % "9.4.1212.jre7"
 
