@@ -14,6 +14,11 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 GET     /friends                    controllers.HomeController.friends
 
+GET     /feed                       controllers.FeedController.feed
+
+GET     /city_shops                 controllers.CitySearchController.cityShops
+
 GET     /main                       controllers.HomeController.main
 
 GET     /sayHello                    controllers.HomeController.submitreviews
+
