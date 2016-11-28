@@ -48,9 +48,10 @@
         </header>
         <div class="w3-row-padding w3-margin-top">
             <div class="w3-half w3-container w3-center">
-                <form>
-                    <input type="text" required>
-                    <button class="w3-btn font w3-light-blue" onclick="document.getElementById('id01').style.display='block'">Find Shop</button>
+                <form name="findShop" action="searchPlaces" onsubmit="return validateForm()">
+                    <label>Search Place</label>
+                    <input type="text" name="loc" required>
+                    <input type="submit" value="Search" >
                 </form>
             </div>
         </div>

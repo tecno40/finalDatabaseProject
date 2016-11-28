@@ -26,32 +26,128 @@ public class Application extends Controller {
     public Application(){
         
     }
+   public String getUsername(Set<Map.Entry<String,String[]>> entries){
+        String uname = null; 
+       
+        for (Map.Entry<String,String[]> entry : entries) {
+            if (entry.getKey().equalsIgnoreCase("friend")){
+                uname = Arrays.toString(entry.getValue()); 
+                uname = this.removeFirstAndLastChar(uname); 
+            }
+        }
+        try {
+        	Class.forName("org.postgresql.Driver");
+        } catch (ClassNotFoundException e) {
+        	System.out.println("Where is your PostgreSQL JDBC Driver? "
+        		+ "Include in your library path!");
+        	e.printStackTrace();
+        }
+    	Connection connection = null;
+		try {
+			connection = DriverManager.getConnection(
+				"jdbc:postgresql://localhost/donutfinder", "postgres",
+				"p0stGre$$Pa$$1");
+		} catch (SQLException e) {
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+		}
+    	ResultSet rs = null;
+    	try{
+    		Statement stmt = connection.createStatement();
+            String query = "select id from users where id = '" + uname + "'";
+            rs = stmt.executeQuery(query);
+            if(rs.next()){
+                return uname; 
+            }else {
+                return null; 
+            }
+                
+    	}catch(Exception e){
+    	    System.out.println("error : " + e);
+    	}
+        
+        return uname; 
+   } 
+    
+    public String getShopId(Set<Map.Entry<String,String[]>> entries){
+        String key = ""; 
+        String[] value = null; 
+        for (Map.Entry<String,String[]> entry : entries) {
+            if (entry.getKey().equalsIgnoreCase("loc")){
+                key = entry.getKey(); 
+                value = entry.getValue(); 
+            }
+        }
+        if (value == null){
+            System.out.println("value is null"); 
+        }else{
+             System.out.println("key: " + key + "   value: " + value[0]);
+             String[] splitvalues = value[0].split(",");
+             //assuming splitvalues [name][street][city][state]
+            try {
+        	Class.forName("org.postgresql.Driver");
+    		System.out.println("yay!!!"); 
+    
+        	} catch (ClassNotFoundException e) {
+        			System.out.println("Where is your PostgreSQL JDBC Driver? "
+        					+ "Include in your library path!");
+        			e.printStackTrace();
+        	}
+        	Connection connection = null;
+		try {
+
+			connection = DriverManager.getConnection(
+					"jdbc:postgresql://localhost/donutfinder", "postgres",
+					"p0stGre$$Pa$$1");
+		} catch (SQLException e) {
+
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+
+		}
+    		 ResultSet rs = null; 
+            try{
+                Statement stmt = connection.createStatement();
+                String query = "select s.id from shop s, cities c where s.name = '" +
+                    splitvalues[0].trim() +"' and s.cityid = c.id and s.street = '" +
+                    splitvalues[1].trim() + "' and c.city = '" + splitvalues[2].trim()+
+                    "' and c.state = '" + splitvalues[3].trim()+"'";
+                    System.out.println(query);
+                rs = stmt.executeQuery(query);
+                if(rs.next()){
+                    return rs.getString("id"); 
+                }else {
+                    return null; 
+                }
+    
+            }catch(Exception e){
+                System.out.println("this is error"); 
+            }
+        }
+        return null;
+    }
     
     public void updateReviews( Set<Map.Entry<String,String[]>> entries){
         try {
         	Class.forName("org.postgresql.Driver");
     		System.out.println("yay!!!"); 
+    
     	} catch (ClassNotFoundException e) {
-    		System.out.println("Where is your PostgreSQL JDBC Driver? "
-    				+ "Include in your library path!");
-			e.printStackTrace();
-		}
-		Connection connection = null;
+    			System.out.println("Where is your PostgreSQL JDBC Driver? "
+    					+ "Include in your library path!");
+    			e.printStackTrace();
+    		}
+    		Connection connection = null;
 		try {
+
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://localhost/donutfinder", "postgres",
 					"p0stGre$$Pa$$1");
-			System.out.println("YAY!! Again"); 
-
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
 		}
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
-		}
+		
         String tuples[][] = new String[20][2];
         int i = 0; 
         for (Map.Entry<String,String[]> entry : entries) {
@@ -147,30 +243,21 @@ public class Application extends Controller {
     		System.out.println("yay!!!"); 
     
     	} catch (ClassNotFoundException e) {
-    
     			System.out.println("Where is your PostgreSQL JDBC Driver? "
     					+ "Include in your library path!");
     			e.printStackTrace();
     		}
     		Connection connection = null;
-
 		try {
 
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://localhost/donutfinder", "postgres",
 					"p0stGre$$Pa$$1");
-					System.out.println("YAY!! Again"); 
-
 		} catch (SQLException e) {
 
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
 
-		}
-		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
-		} else {
-			System.out.println("Failed to make connection!");
 		}
         
         MainPage mp = new MainPage(); 
@@ -294,6 +381,7 @@ public class Application extends Controller {
         }catch(Exception e){
             System.out.println("help: " + e);
         }
+        
         return fp;
     }
 }

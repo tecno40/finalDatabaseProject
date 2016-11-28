@@ -34,8 +34,8 @@
                     <img src=@image alt="image" style="max-width:100%" >
                 </div>
                 <div class="w3-half w3-container">
-                    <button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Home</button>
-                    <!--<button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Favorite</button>-->
+                    <a href="index">Home</a>
+<!--<button class="w3-btn w3-large w3-blue w3-hover-light-grey" onclick="document.getElementById('id01').style.display='block'" style="font-weight:200;	vertical-align: top;">Favorite</button>-->
                     <h1 class="w3-xxlarge w3-animate-bottom font">@title</h1> 
                     <div class="w3-half w3-container">
                         <pre class="font">
@@ -53,7 +53,15 @@
                 </div>
             </div>
         </header>
-        
+        <div class="w3-row-padding w3-margin-top">
+            <div class="w3-half w3-container w3-center">
+                <form name="findFriend" action="searchFriends" onsubmit="return validateForm()">
+                    <label>Search Friend</label>
+                    <input type="text" name="friend" required>
+                    <input type="submit" value="Search" >
+                </form>
+            </div>
+        </div>
         <br/>
         <div class="w3-row-padding">
             <div class="w3-half">
@@ -240,6 +248,7 @@
                         <label>Tell us what you think about @title</label>
                         
                         <textarea name="text1" rows="4" cols="50"></textarea>
+                        <br/>
                         <input type="submit" value="Submit" >
                     </form>
 
