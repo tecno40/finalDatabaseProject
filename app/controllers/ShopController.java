@@ -17,11 +17,13 @@ import com.avaje.ebean.*;
 
 public class ShopController extends Controller {
     public Result Shopfinder(){
-       
+       System.out.println("1");
         int shopId = 111;
         String userId = "8"; 
         userId = request().getQueryString("userid");
+        System.out.println("2");
         shopId = Integer.parseInt(request().getQueryString("shopid"));
+        System.out.println("3");
         
         return find(shopId, userId);
     }
@@ -48,6 +50,7 @@ public class ShopController extends Controller {
     }
    
    public Result find(int shopId, String userId){
+       System.out.println("4");
        models.Shop shop = null; 
         Cities city = null; 
         List <Socialmedia> mediaList=new ArrayList<Socialmedia>();
@@ -55,12 +58,16 @@ public class ShopController extends Controller {
         List <Image> images = new ArrayList<Image>(); 
         
         shop = models.Shop.find.where().eq("id",shopId).findUnique();
+        System.out.println("5");
 	    if (shop != null){
 	        city = Cities.find.where().eq("id", shop.cityid).findUnique(); 
 	        System.out.println("Shop: " + shop.name + " -- " + city.state ); 
 	        mediaList = Socialmedia.find.where().eq("shopid", shop.id).findList(); 
+	        System.out.println("6.1");
 	        features = Feature.find.where().eq("shopid", shop.id).findList(); 
+	        System.out.println("7.1");
 	        images = Image.find.where().eq("shopid", shop.id).findList(); 
+	        System.out.println("8.1");
 	    }  
 	    
 	  //get ratings 
@@ -76,7 +83,7 @@ public class ShopController extends Controller {
             ar.averageVal = sql_row.getInteger("averageVal");
             ratings.add(ar); 
         }
-      
+       System.out.println("7");
         // SQL query.
         String sql2 = "select r.overallrating,r.reviewtext,u.id from users u, review r where r.shop_id = :shopid and r.user_id = u.id";
         List<SqlRow> sql3 = Ebean.createSqlQuery(sql2).setParameter("shopid", shop.id).findList();
@@ -89,8 +96,16 @@ public class ShopController extends Controller {
             ar.userid = sql_row2.getString("id"); 
             reviews.add(ar); 
         }
+         System.out.println("8"); 
+         Image image; 
+         try{
+              image = images.get(0);
+         }catch(Exception e){
+             image = new Image(); 
+             image.url = "http://media1.fdncms.com/sfweekly/imager/dynamo-teams-up-with-act-to-make-simps/u/blog/3383339/homer_donut.png?cb=1471312065";
+         }
         // Will get the list of Sql rows.
-        return ok(shopview.render(shop,userId,city,mediaList, features, images.get(0), ratings, reviews));
+        return ok(shopview.render(shop,userId,city,mediaList, features, image, ratings, reviews));
    }
     
 }
