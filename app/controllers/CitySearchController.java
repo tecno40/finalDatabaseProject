@@ -24,13 +24,29 @@ public class CitySearchController extends Controller {
      */
     public Result cityShops(){
         
-        List <Cities> cityList = Cities.find.all();
-        for (Cities city: cityList) {
-        	System.out.println(city.city);
-        }
-               
+        int cityId=0;
+        String cityIdRaw;
+        String cityString="";
+        Cities city;
+        List <Shop> shopList=new ArrayList<Shop>();
+        List <Cities> cityList;
         
-        return ok(city_shops.render(cityList)); 
+        cityIdRaw=request().getQueryString("city");
+        if (cityIdRaw!=null)
+	    {
+	    	cityId=Integer.parseInt(cityIdRaw);
+	        if (cityId>0)
+	        {
+	        	shopList = Shop.find.where().eq("cityid",cityId).findList();
+	        	
+	        	city=Cities.find.where().eq("id",cityId).findUnique();
+	        	cityString=" in "+city.city+", "+city.state;
+	        }
+        }
+        
+        cityList = Cities.find.all();               
+        
+        return ok(city_shops.render(cityList,cityId,shopList,cityString)); 
     }
     
    }
