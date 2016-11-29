@@ -19,3 +19,6 @@ libraryDependencies += "mysql" % "mysql-connector-java" % "5.1.35"
 fork in run := true
 
 fork in run := true
+
+
+fork in run := true

@@ -28,7 +28,7 @@ public class CitySearchController extends Controller {
         String cityIdRaw;
         String cityString="";
         Cities city;
-        List <Shop> shopList=new ArrayList<Shop>();
+        List <models.Shop> shopList=new ArrayList<models.Shop>();
         List <Cities> cityList;
         
         cityIdRaw=request().getQueryString("city");
@@ -37,7 +37,7 @@ public class CitySearchController extends Controller {
 	    	cityId=Integer.parseInt(cityIdRaw);
 	        if (cityId>0)
 	        {
-	        	shopList = Shop.find.where().eq("cityid",cityId).findList();
+	        	shopList = models.Shop.find.where().eq("cityid",cityId).findList();
 	        	
 	        	city=Cities.find.where().eq("id",cityId).findUnique();
 	        	cityString=" in "+city.city+", "+city.state;

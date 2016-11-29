@@ -10,7 +10,7 @@ import java.util.*;
  * to the application's home page.
  */
 public class FeedController extends Controller {
-    Application ap; 
+   
 
     /**
      * An action that renders an HTML page with a welcome message.
@@ -19,9 +19,8 @@ public class FeedController extends Controller {
      * <code>GET</code> request with a path of <code>/</code>.
      */
     public Result feed(){
-        ap = new Application(); 
-        MainPage i = ap.getMainPageInfo(111); 
-        return ok(feed.render(i.getName(), i.getLoc(), i.getSM(), i.getRatings(), i.getFeatures(), i.getReviews(),i.getImage(), "111", "8")); 
+         ShopController sc = new ShopController(); 
+        return sc.find(111, "8");  
     }
     
    }

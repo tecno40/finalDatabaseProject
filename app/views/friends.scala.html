@@ -5,7 +5,7 @@
  * object to insert into the body of the page.
  *@
 
-@(title: String)(favorites: String)(reviews: String)
+@(title: String)(favorites: List[Friendsfavs])(reviews: List[Friendsfavs])(user: String)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +36,10 @@
                     <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
                 </div>
                 <div class="w3-half w3-container">
-                    <a href="index">Home</a>
+                    <a href="/">Home</a>
                     <!--<button class="w3-btn font" onclick="hello();" >Home</button>-->
                     <!--<button class="w3-btn font" onclick="document.getElementById('id01').style.display='block'">Follow Friend</button>-->
-                    <h1 class="w3-xxxlarge w3-animate-bottom font">You're Donut Friend @title</h1> 
+                    <h1 class="w3-xxxlarge w3-animate-bottom font">Your Donut Friend @title</h1> 
                 </div>
                 <div class="w3-quarter w3-container" >
                     <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
@@ -48,9 +48,11 @@
         </header>
         <div class="w3-row-padding w3-margin-top">
             <div class="w3-half w3-container w3-center">
-                <form>
-                    <input type="text" required>
-                    <button class="w3-btn font w3-light-blue" onclick="document.getElementById('id01').style.display='block'">Find Shop</button>
+                <form name="findShop" action="searchPlaces" onsubmit="return validateForm()">
+                    <label>Search Place</label>
+                    <input type="text" name="loc" required>
+                    <input type="radio" name="userid" value="@user" style="display:none" checked/>
+                    <input type="submit" value="Search" >
                 </form>
             </div>
         </div>
@@ -60,9 +62,13 @@
                     <div class="w3-container w3-theme">
                         <h3>@title 's Favorites</h3>
                     </div>
-                    <pre>
-                        <h4 class="font">@favorites</h4>
-                    </pre>
+                    <div>
+                        @for(fav <- favorites){
+                            @fav.name , @fav.street , @fav.city , @fav.state
+                            <br>
+                        }
+                    </div>
+                  
                 </div>
             </div>
             <div class="w3-half">
@@ -70,9 +76,13 @@
                     <div class="w3-container w3-theme">
                         <h3>@title 's Reviews</h3>
                     </div>
-                    <pre>
-                        <h4 class="font">@reviews</h4>
-                    </pre>
+                    <div>
+                        @for(review <- reviews){
+                            @review.name , @review.overallrating <br>--- @review.reviewtext 
+                            <br><br>
+                        }
+                    </div>
+                    
                 </div>
             </div>
         </div>
