@@ -37,7 +37,7 @@ public class Application extends Controller {
 		try {
 			connection = DriverManager.getConnection(
 					"jdbc:postgresql://localhost/donutfinder", "postgres",
-					"donuts");
+					"mibandey");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,10 +69,12 @@ public class Application extends Controller {
               System.out.println("shop= " + shopId); 
             for(int j = 0; j < tuples.length; j++){
                 if (tuples[j][0] == null){
+                    System.out.println("yay1"); 
                     break; 
                 }else if(tuples[j][0].equalsIgnoreCase("Shop")||tuples[j][0].equalsIgnoreCase("uname")){
-                    
+                    System.out.println("yay2"); 
                 }else if(tuples[j][0].equalsIgnoreCase("text1")){
+                    System.out.println("boo3"); 
                     String review = this.removeFirstAndLastChar(tuples[j][1]);
                     rs = stmt.executeQuery("select * from review where user_id = '" + userId + "' and shop_id=" + shopId);
                     if(rs.next()){
@@ -81,12 +83,13 @@ public class Application extends Controller {
                         stmt.executeUpdate("update review set reviewtext = '" + review + "' where shop_id = " +
                             shopId  + " and user_id = '" + userId +"'"); 
                     }else {
-                         System.out.println("3"); 
-                        stmt.executeUpdate("insert into review(reviewtext, shop_id, user_id) where " +
+                         System.out.println("3: " + review + "  - " + shopId  + "   - " + userId); 
+                        stmt.executeUpdate("insert into review(reviewtext, shop_id, user_id)" +
                             "values('" + review + ", " + shopId +", '" + userId +"')" );
                     }
-                    System.out.println("text1:  " + tuples[j][1]); 
+                    System.out.println("yay3"); 
                 }else if (tuples[j][0].equalsIgnoreCase("overall")){
+                    System.out.println("boo4"); 
                     String overallrating = this.removeFirstAndLastChar(tuples[j][1]);
                     rs = stmt.executeQuery("select * from review where user_id = '" + userId + "' and shop_id=" + shopId);
                     if(rs.next()){
@@ -99,7 +102,9 @@ public class Application extends Controller {
                         stmt.executeUpdate("insert into review(overallrating, shop_id, user_id) " +
                             "values('" + overallrating + "', " + shopId +", '" + userId +"')" );
                     }
+                    System.out.println("yay4"); 
                 }else{
+                    System.out.println("boo5"); 
                     rs = stmt.executeQuery("select * from rating where userid = '" + userId + "' and shopid='"
                         +shopId+"' and ratingtype = '" + tuples[j][0] + "'" ); 
                     String rating = this.removeFirstAndLastChar(tuples[j][1]); 
@@ -110,6 +115,7 @@ public class Application extends Controller {
                         int q = stmt.executeUpdate("insert into rating(userid, shopid,ratingtype,ratingval) values('"+
                         userId+"', " +shopId+",'"+tuples[j][0]+"', "+rating+")");
                     }
+                    System.out.println("yay5");
                 }
                 
             }
