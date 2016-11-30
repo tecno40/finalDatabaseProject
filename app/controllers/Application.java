@@ -85,7 +85,7 @@ public class Application extends Controller {
                     }else {
                          System.out.println("3: " + review + "  - " + shopId  + "   - " + userId); 
                         stmt.executeUpdate("insert into review(reviewtext, shop_id, user_id)" +
-                            "values('" + review + ", " + shopId +", '" + userId +"')" );
+                            "values('" + review + "', " + shopId +", '" + userId +"')" );
                     }
                     System.out.println("yay3"); 
                 }else if (tuples[j][0].equalsIgnoreCase("overall")){
