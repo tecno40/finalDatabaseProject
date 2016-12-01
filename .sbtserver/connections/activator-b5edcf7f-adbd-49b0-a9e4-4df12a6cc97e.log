@@ -1,9 +1,0 @@
-New log file opened at Mon Nov 28 10:18:04 EST 2016 by 9524@T-Dell
-Sending msg to client activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e: DetachedLogEvent(LogMessage(debug,sbt server socket logs are in: C:\Users\T\Downloads\typesafe-activator-1.3.12\activator-dist-1.3.12\bin\play-java\.sbtserver\connections\master.log))
-Sending msg to client activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e: DetachedLogEvent(LogMessage(debug,sbt client logs are in: C:\Users\T\Downloads\typesafe-activator-1.3.12\activator-dist-1.3.12\bin\play-java\.sbtserver\connections\activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e.log))
-Sending msg to client activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e: DetachedLogEvent(LogMessage(debug,sbt general server logs are in: C:\Users\T\Downloads\typesafe-activator-1.3.12\activator-dist-1.3.12\bin\play-java\.sbtserver\master.log))
-Reading next message from client.
-Client activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e EOF, shutting down.
-Stopping client.
-Client activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e thread exiting.
-Dropping message (0,ReceivedResponse()) to dead client activator-b5edcf7f-adbd-49b0-a9e4-4df12a6cc97e

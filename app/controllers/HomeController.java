@@ -77,9 +77,8 @@ public class HomeController extends Controller {
         Set<Map.Entry<String,String[]>> entries = request().queryString().entrySet();
 
         ap = new Application(); 
-        ap.updateReviews(entries); 
+        return ap.updateReviews(entries); 
     
-        return ok(index.render("Your new application is ready."));
     }
 
     
