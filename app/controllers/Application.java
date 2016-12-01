@@ -17,8 +17,9 @@ import play.api.mvc.Cookie;
 public class Application extends Controller {
 
     private Database db;
-    
-
+	private String dbPassword="donuts"; //"mibandey"   
+	private String dbUser="postgres";
+	
     @Inject
     public void Application(Database db) {
         this.db = db;
@@ -50,8 +51,8 @@ public class Application extends Controller {
     		Connection connection = null;
 		try {
 			connection = DriverManager.getConnection(
-					"jdbc:postgresql://localhost/donutfinder", "postgres",
-					"mibandey");
+					"jdbc:postgresql://localhost/donutfinder", dbUser,
+					dbPassword);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

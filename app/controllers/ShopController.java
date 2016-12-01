@@ -17,10 +17,21 @@ import com.avaje.ebean.*;
 
 public class ShopController extends Controller {
     public Result Shopfinder(){
+    
+    	Application ap;
+		Users user;		
+		ap=new Application();
+		user=ap.getUser();
+		if (user==null)
+		{
+			return temporaryRedirect("/");
+		}
+
+    
        System.out.println("1");
         int shopId = 111;
         String userId = "8"; 
-        userId = request().getQueryString("userid");
+        userId = user.id;
         System.out.println("2");
         shopId = Integer.parseInt(request().getQueryString("shopid"));
         System.out.println("3");
@@ -29,11 +40,21 @@ public class ShopController extends Controller {
     }
     
     public Result searchShops(){
+    
+    	Application ap;
+		Users user;		
+		ap=new Application();
+		user=ap.getUser();
+		if (user==null)
+		{
+			return temporaryRedirect("/");
+		}
+    
         int shopId; 
         String location = request().getQueryString("loc");
         String[] splitvalues = location.split(",");
         String myuserId = "8"; 
-        myuserId = request().getQueryString("userid");
+        myuserId = user.id;
 
         String sql = "SELECT s.id from shop s, cities c where s.name = :name and s.cityid = c.id and s.street = :street" +
             "  and c.city = :city and c.state = :state";

@@ -21,7 +21,15 @@ public class FriendsController extends Controller {
         String userId = "8"; 
         userId = request().getQueryString("friend");
         
-        
+        Application ap;
+		Users user2;		
+		ap=new Application();
+		user2=ap.getUser();
+		if (user2==null)
+		{
+			return temporaryRedirect("/");
+		}
+
 
         String sql = "select id, first_name from users where id =:uname"; 
         List<SqlRow> sqlavg = Ebean.createSqlQuery(sql).setParameter("uname", userId).findList();
@@ -40,7 +48,19 @@ public class FriendsController extends Controller {
     }
     
      public Result find(String userId){
-         String user = request().getQueryString("user");
+     
+     	Application ap;
+		Users user2;		
+		ap=new Application();
+		user2=ap.getUser();
+		if (user2==null)
+		{
+			return temporaryRedirect("/");
+		}
+
+     
+         String user = user2.id;
+         
          // SQL query.
         String sql = "SELECT s.name, s.street, c.city, c.state FROM Shop s, favorites f, cities c "+
                 "WHERE f.shopid = s.id and f.userid=:userid and s.cityid=c.id";
