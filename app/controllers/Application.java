@@ -11,8 +11,8 @@ import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
-
-
+import models.*;
+import play.api.mvc.Cookie;
 
 public class Application extends Controller {
 
@@ -25,6 +25,19 @@ public class Application extends Controller {
     }
     public Application(){
         
+    }
+  
+    public Users getUser()
+    {
+    	String username="";
+    	Users user=null;
+
+    	username=session("user");
+    	{
+    		user=Users.find.where().eq("id",username).findUnique();
+       	}
+    	
+    	return user;
     }
   
     public void updateReviews( Set<Map.Entry<String,String[]>> entries){

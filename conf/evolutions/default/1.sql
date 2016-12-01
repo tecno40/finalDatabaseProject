@@ -14,9 +14,19 @@ create table cities (
   state                         varchar(255)
 );
 
+create table favorites (
+  userid                        varchar(255),
+  shopid                        integer
+);
+
 create table feature (
   shopid                        integer,
   feature                       varchar(255)
+);
+
+create table following (
+  followerid                    varchar(255),
+  followedid                    varchar(255)
 );
 
 create table friendsfavs (
@@ -57,35 +67,35 @@ create table shop (
   overallrating                 float
 );
 
-create table user (
-  id                            varchar(255),
-  password                      varchar(255),
-  first_name                    varchar(255),
-  last_name                     varchar(255),
-  cityid                        integer,
-  city                          varchar(255),
-  state                         varchar(255),
-  email                         varchar(255)
-);
 create table socialmedia (
   shopid                        integer,
   platform                      varchar(255),
   handle                        varchar(255)
 );
 
+create table users (
+  id                            varchar(255),
+  first_name                    varchar(255),
+  last_name                     varchar(255),
+  cityid                        integer,
+  city                          varchar(255),
+  state                         varchar(255),
+  email                         varchar(255),
+  hashed_password               varchar(255)
+);
+
 
 # --- !Downs
 
-drop table if exists cities cascade;
-
-drop table if exists shop cascade;
-
-drop table if exists user cascade;
 drop table if exists average_ratings cascade;
 
 drop table if exists cities cascade;
 
+drop table if exists favorites cascade;
+
 drop table if exists feature cascade;
+
+drop table if exists following cascade;
 
 drop table if exists friendsfavs cascade;
 
@@ -98,4 +108,6 @@ drop table if exists reviewsofshop cascade;
 drop table if exists shop cascade;
 
 drop table if exists socialmedia cascade;
+
+drop table if exists users cascade;
 

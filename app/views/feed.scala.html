@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(location: String)(socialMedia: String)(averageRatings: String)(features: String)(reviews: String)(image: String)(shopid:String)(userid: String)
+@(shopList: List[Shop],userList: List[Users],shopsError: String,friendsError: String)
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,10 +34,9 @@
                     <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
                 </div>
                 <div class="w3-half w3-container">
-                    <a href="index">Home</a>
                     <!--<button class="w3-btn font" onclick="hello();" >Home</button>-->
                     <!--<button class="w3-btn font" onclick="document.getElementById('id01').style.display='block'">Follow Friend</button>-->
-                    <h1 class="w3-xxxlarge w3-animate-bottom font">You're Donut Friend </h1> 
+                    <h3 class="w3-animate-bottom font">What's going on in your friendly, secret donut society </h3> 
                 </div>
                 <div class="w3-quarter w3-container" >
                     <img src="https://tstoaddicts.files.wordpress.com/2014/06/donut-loading.png" alt="image" style="max-width:100%" >
@@ -45,32 +44,38 @@
             </div>
         </header>
         <div class="w3-row-padding w3-margin-top">
-            <div class="w3-half w3-container w3-center">
-                <form>
-                    <input type="text" required>
-                    <button class="w3-btn font w3-light-blue" onclick="document.getElementById('id01').style.display='block'">Find Shop</button>
-                </form>
-            </div>
-        </div>
-        <div class="w3-row-padding w3-margin-top">
             <div class="w3-half">
+            	<form action="city_shops">
+                    <button class="w3-btn font w3-light-blue" style="width:100%" onclick="document.getElementById('id01').style.display='block'">Find a Shop</button>
+                </form>
+                <br>
                 <div class="w3-card white">
                     <div class="w3-container w3-theme">
                         <h3>Your Favorite Shops</h3>
                     </div>
-                    <pre>
-                        <h4 class="font"></h4>
-                    </pre>
+                    <div>
+                    	@shopsError
+                    	@for(shop <- shopList){
+					    	<br><a href="main?shopid=@shop.id">@shop.name</a>
+						}
+                    </div>
                 </div>
             </div>
             <div class="w3-half">
+            	<form action="city_friends">
+                    <button class="w3-btn font w3-light-blue" style="width:100%" onclick="document.getElementById('id01').style.display='block'">Find Friends</button>
+                </form>
+                <br>
                 <div class="w3-card white">
                     <div class="w3-container w3-theme">
                         <h3>Donut Lovin' Friends</h3>
                     </div>
-                    <pre>
-                        <h4 class="font"></h4>
-                    </pre>
+                    <div>
+                    	@friendsError
+                    	@for(user <- userList){
+					    	<br><a href="friends?friend=@user.id">@user.id</a>
+						}
+                    </div>
                 </div>
             </div>
         </div>

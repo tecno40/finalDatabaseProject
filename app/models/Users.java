@@ -8,19 +8,19 @@ import play.data.format.*;
 import play.data.validation.*;
 
 @Entity
-public class User extends Model {
+public class Users extends Model {
  
     public String id;
-    public String password;
     public String first_name;
     public String last_name;
     public Integer cityid;
     public String city;
     public String state;
     public String email;
+    public String hashed_password;
      	
- 	public static Finder<String, User> find
-            = new Model.Finder<>(String.class, User.class);
+ 	public static Finder<String, Users> find
+            = new Model.Finder<>(String.class, Users.class);
  
  	     
 }
